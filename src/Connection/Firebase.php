@@ -122,11 +122,14 @@ class Firebase implements ConnectionInterface
         } else {
             $waitToken = $args['waitToken'];
         }
-        return [
-            'breakpoints' => $this->breakpoints,
+        $return = [
             'nextWaitToken' => $waitToken
         ];
-    }
+        if ($this->breakpoints) {
+            $return['breakpoints'] = $this->breakpoints;
+        }
+        return $return;
+   }
 
     /**
      * Update the provided breakpoint.
